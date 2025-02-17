@@ -1,5 +1,17 @@
 import header from "../assets/ncnews.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  return <img src={header} alt="Image of the text 'NC News'"></img>;
+  const navigate = useNavigate();
+  const gotToNewPage = () => {
+    navigate("/");
+  };
+
+  return (
+    <img
+      onClick={gotToNewPage}
+      src={header}
+      alt="Image of the text 'NC News'"
+    ></img>
+  );
 }

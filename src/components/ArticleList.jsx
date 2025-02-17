@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
+import { useNavigate } from "react-router-dom";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([
@@ -12,23 +13,28 @@ export default function ArticleList() {
   useEffect(() => {
     getArticles()
       .then((response) => {
-        console.log(response);
         setArticles(response);
       })
       .catch(console.log);
   }, []);
+
+  const navigate = useNavigate();
+  const gotToNewPage = () => {
+    navigate("/article_id");
+  };
 
   return (
     <ul>
       {articles.map((article) => {
         return (
           <li key={article.article_id} className="articleCard">
-            <div className="info">
-              <h4>{article.title}</h4>
+            <section className="info">
+              <h4 className="title" onClick={gotToNewPage}>
+                {article.title}
+              </h4>
               <p>Topic: {article.topic}</p>
               <p>{article.comment_count} comments</p>
-            </div>
-
+            </section>
             <img className="thumbnail" src={article.article_img_url}></img>
           </li>
         );
