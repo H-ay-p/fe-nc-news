@@ -7,7 +7,6 @@ export default function Article() {
   useEffect(() => {
     getArticleById(articleId)
       .then((response) => {
-        console.log(response);
         setArticleId(response);
       })
       .catch(console.log);

@@ -13,7 +13,6 @@ export default function ArticleList() {
   useEffect(() => {
     getArticles()
       .then((response) => {
-        console.log(response);
         setArticles(response);
       })
       .catch(console.log);
