@@ -9,6 +9,7 @@ export default function Header() {
 
   return (
     <img
+      className="header"
       onClick={gotToNewPage}
       src={header}
       alt="Image of the text 'NC News'"

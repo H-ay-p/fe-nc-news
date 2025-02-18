@@ -13,6 +13,17 @@
   grid-template-columns: 3fr, 1fr;
 }
 
+.articleMain {
+  border: 1px #4f1403 solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.commentCard {
+  border: 1px #4f1403 dotted;
+  border-radius: 0.5rem;
+  margin: 0.7rem auto 0.7rem auto;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -43,6 +54,11 @@ h4 {
   margin: 1rem;
 }
 
-.title {
+.title,
+.header {
   cursor: pointer;
+}
+
+.hidden_id {
+  color: white;
 }
