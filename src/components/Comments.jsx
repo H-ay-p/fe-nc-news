@@ -3,6 +3,7 @@ import { getComments } from "../api";
 import { useParams } from "react-router-dom";
 
 export default function Comments() {
+  const [isLoading, setIsLoading] = useState(false);
   const [comments, setComments] = useState([
     {
       article_id: 6,
@@ -17,12 +18,18 @@ export default function Comments() {
   const { article_id } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     getComments(article_id)
       .then((response) => {
         setComments(response);
+        setIsLoading(false);
       })
       .catch(console.log);
   }, []);
+
+  if (isLoading) {
+    return <p>loading</p>;
+  }
 
   return (
     <>
@@ -33,7 +40,6 @@ export default function Comments() {
             <li key={comment.comment_id} className="commentCard">
               <p>{comment.author}</p>
               <p>{comment.body}</p>
-
               <p>{dateToShow}</p>
               <p>{comment.votes} ❤️</p>
             </li>

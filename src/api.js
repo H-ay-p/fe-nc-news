@@ -22,3 +22,19 @@ export const getComments = (article_id) => {
     return data;
   });
 };
+
+export const addVote = (article_id) => {
+  return news
+    .patch(`articles/${article_id}`, { incVotes: 1 })
+    .then((response) => {
+      console.log(response);
+    });
+};
+
+export const removeVote = (article_id) => {
+  return news
+    .patch(`articles/${article_id}`, { incVotes: -1 })
+    .then((response) => {
+      console.log(response);
+    });
+};
