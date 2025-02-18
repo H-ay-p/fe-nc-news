@@ -9,14 +9,21 @@ export default function ArticleList() {
       title: "test_article",
     },
   ]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getArticles()
       .then((response) => {
         setArticles(response);
+        setIsLoading(false);
       })
       .catch(console.log);
   }, []);
+
+  if (isLoading) {
+    return <p>loading</p>;
+  }
 
   return (
     <ul>

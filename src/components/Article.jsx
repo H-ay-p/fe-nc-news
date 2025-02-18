@@ -1,20 +1,49 @@
 import { useEffect, useState } from "react";
-import { getArticleById } from "../api";
+import { getArticleById, addVote, removeVote } from "../api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 
 export default function Article() {
   const [article, setArticle] = useState("1");
-
+  const [isLoading, setIsLoading] = useState(false);
   const { article_id } = useParams();
+  const [votes, setVotes] = useState(0);
+  const [fail, setFail] = useState("");
 
   useEffect(() => {
+    setIsLoading(true);
     getArticleById(article_id)
       .then((response) => {
         setArticle(response);
+        6;
+        setIsLoading(false);
       })
       .catch(console.log);
   }, []);
+
+  if (isLoading) {
+    return <p>loading</p>;
+  }
+
+  function handlePlusVote(e) {
+    setVotes((votes) => votes + 1);
+    e.currentTarget.disabled = true;
+    addVote(article_id, votes).catch((err) => {
+      console.log(err);
+      setVotes(0);
+      setFail("Oops, that didn't work");
+    });
+  }
+
+  function handleNegVote(e) {
+    setVotes((votes) => votes - 1);
+    e.currentTarget.disabled = true;
+    removeVote(article_id).catch((err) => {
+      console.log(err);
+      setVotes(0);
+      setFail("Oops, that didn't work");
+    });
+  }
 
   return (
     <>
@@ -23,36 +52,37 @@ export default function Article() {
         <img src={article.article_img_url}></img>
         <h2>Author: {article.author}</h2>
         <p>{article.body}</p>
+        <section className="votes">
+          <p>{article.votes + votes} ❤️</p>
+          <button className="voteBtn" onClick={handlePlusVote}>
+            Like
+          </button>
+          <button className="voteBtn" onClick={handleNegVote}>
+            Dislike
+          </button>
+        </section>
+        <p>{fail}</p>
       </section>
       <Comments />
     </>
   );
 }
 
-// article_id
-// :
-// 1
-// article_img_url
-// :
-// "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
-// author
-// :
-// "butter_bridge"
-// body
-// :
-// "I find this existence challenging"
-// comment_count
-// :
-// 11
-// created_at
-// :
-// "2020-07-09T21:11:00.000Z"
-// title
-// :
-// "Living in the shadow of a great man"
-// topic
-// :
-// "mitch"
-// votes
-// :
-// 100
+// const App = () => {
+//   const [count, setCount] = useState(0);
+
+//   return (
+//     <div>
+//       <h1>Count: {count}</h1>
+//       <button
+//         onClick={() =>
+//           setCount((currCount) => {
+//             return currCount + 1;
+//           })
+//         }
+//       >
+//         Increase count by 1
+//       </button>
+//     </div>
+//   );
+// };
