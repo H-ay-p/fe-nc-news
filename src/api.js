@@ -38,3 +38,12 @@ export const removeVote = (article_id) => {
       console.log(response);
     });
 };
+
+export const postComment = (article_id, comment) => {
+  console.log(comment);
+  return news
+    .post(`articles/${article_id}/comments`, comment)
+    .then((response) => {
+      console.log(response);
+    });
+};
