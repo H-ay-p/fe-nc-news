@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
 import { getArticleById } from "../api";
+import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 
 export default function Article() {
-  const [articleId, setArticleId] = useState("1");
+  const [article, setArticle] = useState("1");
+
+  const { article_id } = useParams();
 
   useEffect(() => {
-    getArticleById(articleId)
+    getArticleById(article_id)
       .then((response) => {
-        setArticleId(response);
+        setArticle(response);
       })
       .catch(console.log);
   }, []);
 
   return (
-    <section>
-      <h1>{articleId.title}</h1>
-      <img src={articleId.article_img_url}></img>
-      <h2>Author: {articleId.author}</h2>
-      <p>{articleId.body}</p>
-    </section>
+    <>
+      <section className="articleMain">
+        <h1>{article.title}</h1>
+        <img src={article.article_img_url}></img>
+        <h2>Author: {article.author}</h2>
+        <p>{article.body}</p>
+      </section>
+      <Comments />
+    </>
   );
 }
 
