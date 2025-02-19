@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticleById, addVote, removeVote } from "../api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import NewComment from "./NewComment";
 
 export default function Article() {
   const [article, setArticle] = useState("1");
@@ -63,26 +64,8 @@ export default function Article() {
         </section>
         <p>{fail}</p>
       </section>
+      {/* <NewComment /> */}
       <Comments />
     </>
   );
 }
-
-// const App = () => {
-//   const [count, setCount] = useState(0);
-
-//   return (
-//     <div>
-//       <h1>Count: {count}</h1>
-//       <button
-//         onClick={() =>
-//           setCount((currCount) => {
-//             return currCount + 1;
-//           })
-//         }
-//       >
-//         Increase count by 1
-//       </button>
-//     </div>
-//   );
-// };

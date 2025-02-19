@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { Link } from "react-router-dom";
 
-export default function ArticleList() {
+export default function ArticleList({ user }) {
+  console.log(user);
   const [articles, setArticles] = useState([
     {
       article_id: "1",

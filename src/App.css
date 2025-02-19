@@ -69,6 +69,26 @@ h4 {
   cursor: pointer;
 }
 
-.hidden_id {
-  color: white;
+#commentBox {
+  margin: 1.5rem 0rem 0.5rem 0rem;
+  width: 99%;
+  height: 5em;
+  border-radius: 0.5rem;
+  border: 1px dotted #4f1403;
+}
+
+.submit {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.2em 0.8em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #dadada;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.submit:hover {
+  border-color: #4f1403;
 }
