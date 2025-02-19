@@ -64,7 +64,7 @@ export default function Article() {
         </section>
         <p>{fail}</p>
       </section>
-      <NewComment />
+      {/* <NewComment /> */}
       <Comments />
     </>
   );

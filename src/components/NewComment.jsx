@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { postComment } from "../api";
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
@@ -15,7 +15,7 @@ export default function Comments() {
   const { user } = useContext(UserContext);
   const { article_id } = useParams();
 
-  let commentInput = { author: user.username, body: "" };
+  let commentInput = { username: user.username, body: "" };
 
   function newComment(e) {
     console.log(e);
@@ -57,6 +57,7 @@ export default function Comments() {
           Post new comment
         </button>
       </form>
+
       {/* <ul>
         {comment.map((comment) => {
           const dateToShow = comment.created_at.slice(0, 10);
