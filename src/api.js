@@ -48,3 +48,9 @@ export const postComment = (article_id, comment) => {
 export const deleteComment = (comment_id) => {
   return news.delete(`comments/${comment_id}`).then((response) => {});
 };
+
+export const getTopics = () => {
+  return news.get(`topics`).then(({ data }) => {
+    return data;
+  });
+};

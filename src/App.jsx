@@ -13,7 +13,11 @@ function App() {
       <Header user={user}></Header>
       <Routes>
         <Route path="/" element={<HomePage user={user} />} />
-        <Route path="/:article_id" element={<Article user={user} />}></Route>
+        <Route path="/articles" element={<HomePage user={user} />} />
+        <Route
+          path="/articles/:article_id"
+          element={<Article user={user} />}
+        ></Route>
       </Routes>
     </>
   );

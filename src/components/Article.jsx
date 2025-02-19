@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getArticleById, addVote, removeVote } from "../api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
-import NewComment from "./NewComment";
 
 export default function Article() {
   const [article, setArticle] = useState("1");
@@ -16,7 +15,6 @@ export default function Article() {
     getArticleById(article_id)
       .then((response) => {
         setArticle(response);
-        6;
         setIsLoading(false);
       })
       .catch(console.log);
