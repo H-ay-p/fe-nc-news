@@ -3,21 +3,15 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Header from "./components/Header";
 import Article from "./components/Article";
-import { createContext, useContext } from "react";
 
 function App() {
-  const userContext = createContext({ username: "mitch" });
-  const user = useContext(userContext);
   return (
     <>
-      <Header user={user}></Header>
+      <Header></Header>
       <Routes>
-        <Route path="/" element={<HomePage user={user} />} />
-        <Route path="/articles" element={<HomePage user={user} />} />
-        <Route
-          path="/articles/:article_id"
-          element={<Article user={user} />}
-        ></Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/articles" element={<HomePage />} />
+        <Route path="/articles/:article_id" element={<Article />}></Route>
       </Routes>
     </>
   );

@@ -32,7 +32,9 @@ export default function ArticleList({ user }) {
           return (
             <li key={article.article_id} className="articleCard">
               <section className="info">
-                <Link to={`${article.article_id}`}>{article.title}</Link>
+                <Link to={`/articles/${article.article_id}`}>
+                  {article.title}
+                </Link>
                 <p>Topic: {article.topic}</p>
                 <p>{article.comment_count} comments</p>
               </section>

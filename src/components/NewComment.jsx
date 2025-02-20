@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postComment } from "../api";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 export default function Comments() {
