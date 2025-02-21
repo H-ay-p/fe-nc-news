@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { getTopics } from "../api";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function TopicNav() {
   const [topics, setTopics] = useState([{ slug: "electronics" }]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [chosenTopic, setChosenTopic] = useState("all");
-
-  const navigate = useNavigate();
-
-  function gotToTopicPage(e) {
-    console.log(e.target.value);
-    setChosenTopic(e.target.value);
-    navigate(`/articles/${e.target.value}`);
-  }
+  const setTopic = (e) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("topic", e.target.value);
+    setSearchParams(newParams);
+  };
 
   useEffect(() => {
     getTopics().then((response) => {
@@ -24,7 +21,7 @@ export default function TopicNav() {
   return (
     <nav>
       <label htmlFor="topicSelect"></label>
-      <select id="topicSelect" value="chosenTopic" onChange={gotToTopicPage}>
+      <select id="topicSelect" value="chosenTopic" onChange={setTopic}>
         <option value="all" key="all">
           Show all
         </option>

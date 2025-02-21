@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
-import { Link } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
-export default function ArticleList({ user }) {
+export default function ArticleList() {
   const [articles, setArticles] = useState([
     {
       article_id: "1",
       title: "test_article",
     },
   ]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [isLoading, setIsLoading] = useState(false);
+  const topicQuery = searchParams.get("topic");
 
   useEffect(() => {
     setIsLoading(true);
-    getArticles()
+    getArticles(topicQuery)
       .then((response) => {
         setArticles(response);
         setIsLoading(false);
       })
       .catch(console.log);
-  }, []);
+  }, [topicQuery]);
 
   if (isLoading) {
     return <p>loading</p>;
@@ -32,7 +35,7 @@ export default function ArticleList({ user }) {
           return (
             <li key={article.article_id} className="articleCard">
               <section className="info">
-                <Link to={`/articles/${article.article_id}`}>
+                <Link className="link" to={`/articles/${article.article_id}`}>
                   {article.title}
                 </Link>
                 <p>Topic: {article.topic}</p>

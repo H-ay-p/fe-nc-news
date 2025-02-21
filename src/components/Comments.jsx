@@ -6,8 +6,10 @@ import { UserContext } from "../contexts/UserContext";
 import DeleteButton from "./DeleteButton";
 
 export default function Comments() {
+  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [failOrSuccess, setFailOrSuccess] = useState("");
+  const [commentBodyInput, setCommentBodyInput] = useState("");
   const [comments, setComments] = useState([
     {
       article_id: 6,
@@ -31,27 +33,28 @@ export default function Comments() {
       .catch(console.log);
   }, []);
 
-  const { user } = useContext(UserContext);
-
-  let commentInput = { username: user.username, body: "" };
-
   function handleSubmit(e) {
     e.preventDefault();
-    const randomId = Math.floor(Math.random() * 114527);
+    const randomId = Math.floor(Math.random() * 114527) + Date.now;
     let newComment = {
-      article_id: article_id,
-      author: user.username,
-      body: commentInput.body,
-      comment_id: randomId,
-      created_at: "now",
-      votes: 0,
+      article_id: "",
+      author: "",
+      body: "Your comment is posting...",
+      comment_id: "",
+      created_at: "",
+      votes: "",
     };
     setComments((comments) => {
       return [newComment, ...comments];
     });
-    postComment(article_id, commentInput)
-      .then(() => {
+
+    let commentToSend = { username: user, body: commentBodyInput };
+
+    postComment(article_id, commentToSend)
+      .then((response) => {
+        setComments([response, ...comments]);
         setFailOrSuccess("Your comment has been posted!");
+        setCommentBodyInput("");
       })
       .catch((err) => {
         console.log(err);
@@ -75,16 +78,11 @@ export default function Comments() {
           cols="30"
           rows="10"
           onChange={(e) => {
-            commentInput.body = e.target.value;
+            setCommentBodyInput(e.target.value);
           }}
+          value={commentBodyInput}
         ></textarea>
-
-        <input
-          className="submit"
-          type="submit"
-          value="Post new comment"
-        ></input>
-        {/* <button type="submit">Post new comment</button> */}
+        <button type="submit">Post new comment</button>
       </form>
       <p>{failOrSuccess}</p>
       <ul>
@@ -96,7 +94,7 @@ export default function Comments() {
             dateToShow = "now";
           }
 
-          if (comment.author === user.username) {
+          if (comment.author === user) {
             return (
               <li key={comment.comment_id} className="commentCard">
                 <p>{comment.author}</p>

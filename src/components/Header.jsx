@@ -9,7 +9,8 @@ export default function Header() {
     navigate("/");
   };
 
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
+
   return (
     <>
       <img
@@ -18,7 +19,7 @@ export default function Header() {
         src={header}
         alt="Image of the text 'NC News'"
       ></img>
-      <p>Logged in as {user.username}</p>
+      <p>Logged in as {user.user}</p>
     </>
   );
 }
