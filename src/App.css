@@ -53,6 +53,7 @@ h4 {
   grid-column: 1;
   text-align: left;
   padding-left: 1rem;
+  margin-top: 0.5rem;
 }
 
 .thumbnail {
@@ -99,4 +100,11 @@ h4 {
 
 .hidden {
   visibility: hidden;
+}
+
+.link {
+  color: #4f1403;
+}
+.link:hover {
+  color: #ce5d3e;
 }

@@ -5,8 +5,14 @@ const news = axios.create({
   baseURL: "https://nc-news-3wsj.onrender.com/api/",
 });
 
-export const getArticles = () => {
-  return news.get("articles").then(({ data: articles }) => {
+export const getArticles = (topicQuery) => {
+  let query = "";
+  if (topicQuery === null) {
+    query = "articles";
+  } else {
+    query = `articles?topic=${topicQuery}`;
+  }
+  return news.get(query).then(({ data: articles }) => {
     return articles;
   });
 };
@@ -42,9 +48,17 @@ export const removeVote = (article_id) => {
 export const postComment = (article_id, comment) => {
   return news
     .post(`articles/${article_id}/comments`, comment)
-    .then((response) => {});
+    .then(({ data }) => {
+      return data;
+    });
 };
 
 export const deleteComment = (comment_id) => {
   return news.delete(`comments/${comment_id}`).then((response) => {});
+};
+
+export const getTopics = () => {
+  return news.get(`topics`).then(({ data }) => {
+    return data;
+  });
 };
