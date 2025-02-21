@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 
 export default function Article() {
-  const [article, setArticle] = useState("1");
+  const [article, setArticle] = useState({
+    created_at: "hereisastringbecauseIneedone",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const { article_id } = useParams();
   const [votes, setVotes] = useState(0);
@@ -50,6 +52,7 @@ export default function Article() {
         <h1>{article.title}</h1>
         <img src={article.article_img_url}></img>
         <h2>Author: {article.author}</h2>
+        <p>Date: {article.created_at.slice(0, 10)}</p>
         <p>{article.body}</p>
         <section className="votes">
           <p>{article.votes + votes} ❤️</p>
@@ -62,7 +65,6 @@ export default function Article() {
         </section>
         <p>{fail}</p>
       </section>
-      {/* <NewComment /> */}
       <Comments />
     </>
   );
