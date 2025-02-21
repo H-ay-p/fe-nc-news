@@ -25,7 +25,7 @@ export const getArticleById = (article_id) => {
 };
 
 export const getComments = (article_id) => {
-  return news.get(`articles/${article_id}/commments/`).then(({ data }) => {
+  return news.get(`articles/${article_id}/comments/`).then(({ data }) => {
     return data;
   });
 };
