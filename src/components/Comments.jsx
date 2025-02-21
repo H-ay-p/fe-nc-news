@@ -6,6 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 import DeleteButton from "./DeleteButton";
 
 export default function Comments() {
+  const [isErr, setIsErr] = useState(false);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [failOrSuccess, setFailOrSuccess] = useState("");
@@ -30,7 +31,10 @@ export default function Comments() {
         setComments(response);
         setIsLoading(false);
       })
-      .catch(console.log);
+      .catch((err) => {
+        setIsLoading(false);
+        setIsErr(true);
+      });
   }, []);
 
   function handleSubmit(e) {
@@ -68,6 +72,14 @@ export default function Comments() {
     return <p>loading</p>;
   }
 
+  if (isErr) {
+    return (
+      <p className="error">
+        Sorry, something went wrong with the comments. Please contact us if the
+        problem persists.
+      </p>
+    );
+  }
   return (
     <>
       <form className="commentForm" onSubmit={handleSubmit}>

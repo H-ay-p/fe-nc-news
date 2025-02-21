@@ -13,15 +13,9 @@ export const getArticles = (sortQuery, orderQuery, topicQuery) => {
   }
   console.log(query);
 
-  return news
-    .get(query)
-    .then(({ data: articles }) => {
-      return articles;
-    })
-    .catch((err) => {
-      console.log("in the catch");
-      return err;
-    });
+  return news.get(query).then(({ data: articles }) => {
+    return articles;
+  });
 };
 
 export const getArticleById = (article_id) => {
@@ -31,7 +25,7 @@ export const getArticleById = (article_id) => {
 };
 
 export const getComments = (article_id) => {
-  return news.get(`articles/${article_id}/comments/`).then(({ data }) => {
+  return news.get(`articles/${article_id}/commments/`).then(({ data }) => {
     return data;
   });
 };
