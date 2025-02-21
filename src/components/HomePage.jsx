@@ -1,10 +1,10 @@
 import ArticleList from "./ArticleList";
-import TopicNav from "./TopicNav";
+import QueryNav from "./QueryNav";
 
 export default function HomePage() {
   return (
     <>
-      <TopicNav></TopicNav>
+      <QueryNav></QueryNav>
       <ArticleList></ArticleList>
     </>
   );

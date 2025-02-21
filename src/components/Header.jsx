@@ -6,7 +6,7 @@ import { UserContext } from "../contexts/UserContext";
 export default function Header() {
   const navigate = useNavigate();
   const gotToNewPage = () => {
-    navigate("/");
+    navigate("/articles");
   };
 
   const user = useContext(UserContext);

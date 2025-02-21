@@ -34,11 +34,24 @@
   margin-left: 0.5rem;
 }
 
+.sortBtn {
+  margin: 0rem 0.5rem 0rem 0.5rem;
+  background-color: rgb(253, 230, 230);
+}
+
 ul {
   list-style-type: none;
   padding: 0;
 }
 
+select {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+  background-color: rgb(253, 230, 230);
+  font-size: 12pt;
+}
 p {
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
@@ -58,7 +71,7 @@ h4 {
 
 .thumbnail {
   grid-column: 2;
-  max-width: 100px;
+  max-width: 150px;
   height: auto;
   border: 1px grey solid;
   justify-self: end;
@@ -107,4 +120,10 @@ h4 {
 }
 .link:hover {
   color: #ce5d3e;
+}
+
+.articleInfo {
+  font-size: 11pt;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }

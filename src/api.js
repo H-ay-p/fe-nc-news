@@ -1,17 +1,18 @@
 import axios from "axios";
-import { useParams } from "react-router";
+import { useSearchParams } from "react-router";
 
 const news = axios.create({
   baseURL: "https://nc-news-3wsj.onrender.com/api/",
 });
 
-export const getArticles = (topicQuery) => {
-  let query = "";
-  if (topicQuery === null) {
-    query = "articles";
-  } else {
-    query = `articles?topic=${topicQuery}`;
+export const getArticles = (sortQuery, orderQuery, topicQuery) => {
+  let query = `articles?sort_by=${sortQuery}&order=${orderQuery}`;
+
+  if (topicQuery) {
+    query += `&topic=${topicQuery}`;
   }
+  console.log(query);
+
   return news.get(query).then(({ data: articles }) => {
     return articles;
   });
