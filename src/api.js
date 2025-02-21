@@ -13,9 +13,15 @@ export const getArticles = (sortQuery, orderQuery, topicQuery) => {
   }
   console.log(query);
 
-  return news.get(query).then(({ data: articles }) => {
-    return articles;
-  });
+  return news
+    .get(query)
+    .then(({ data: articles }) => {
+      return articles;
+    })
+    .catch((err) => {
+      console.log("in the catch");
+      return err;
+    });
 };
 
 export const getArticleById = (article_id) => {

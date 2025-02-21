@@ -3,6 +3,7 @@ import { getArticles } from "../api";
 import { useSearchParams, Link } from "react-router-dom";
 
 export default function ArticleList() {
+  const [isErr, setIsErr] = useState("");
   const [articles, setArticles] = useState([
     {
       article_id: "1",
@@ -25,7 +26,10 @@ export default function ArticleList() {
         setArticles(response);
         setIsLoading(false);
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(err);
+        setIsErr("Ooops, something went wrong!");
+      });
   }, [sortQuery, orderQuery, topicQuery]);
 
   if (isLoading) {
@@ -34,6 +38,7 @@ export default function ArticleList() {
 
   return (
     <>
+      <p>{isErr}</p>
       <ul>
         {articles.map((article) => {
           return (
