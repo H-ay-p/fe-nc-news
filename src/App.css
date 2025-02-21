@@ -35,7 +35,7 @@
 }
 
 .sortBtn {
-  margin: 0rem 0.5rem 0rem 0.5rem;
+  margin: 1rem 0.5rem 0rem 0.5rem;
   background-color: rgb(253, 230, 230);
 }
 
@@ -81,6 +81,12 @@ h4 {
 .title,
 .header {
   cursor: pointer;
+}
+
+.error {
+  font-size: 30pt;
+  margin: 5rem 8rem 5rem 8rem;
+  font-weight: bold;
 }
 
 #commentBox {

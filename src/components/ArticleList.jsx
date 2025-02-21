@@ -3,6 +3,7 @@ import { getArticles } from "../api";
 import { useSearchParams, Link } from "react-router-dom";
 
 export default function ArticleList() {
+  const [isErr, setIsErr] = useState(false);
   const [articles, setArticles] = useState([
     {
       article_id: "1",
@@ -25,11 +26,23 @@ export default function ArticleList() {
         setArticles(response);
         setIsLoading(false);
       })
-      .catch(console.log);
+      .catch((err) => {
+        setIsLoading(false);
+        setIsErr(true);
+      });
   }, [sortQuery, orderQuery, topicQuery]);
 
   if (isLoading) {
     return <p>loading</p>;
+  }
+
+  if (isErr) {
+    return (
+      <p className="error">
+        Sorry, something went wrong. Please go back and try again, or contact us
+        if the problem persists.
+      </p>
+    );
   }
 
   return (

@@ -23,13 +23,12 @@ export default function QueryNav() {
   }
 
   function chooseOrder(e) {
-    console.log(e.target.innerText);
-    if (e.target.innerText === "Sort ascending") {
+    if (e.target.innerText === "Ascending") {
       const newParams = new URLSearchParams(searchParams);
       newParams.set("order", "asc");
       setSearchParams(newParams);
     }
-    if (e.target.innerText === "Sort descending") {
+    if (e.target.innerText === "Descending") {
       const newParams = new URLSearchParams(searchParams);
       newParams.set("order", "desc");
       setSearchParams(newParams);
@@ -59,7 +58,7 @@ export default function QueryNav() {
       </select>
       <label htmlFor="sortSelect">Sort articles by:</label>
       <select id="sortSelect" value={chosenSort} onChange={chooseSort}>
-        <option value="date" key="date">
+        <option value="created_at" key="date">
           Date (default)
         </option>
         <option value="comment_count" key="comment_count">
@@ -71,10 +70,10 @@ export default function QueryNav() {
       </select>
 
       <button className="sortBtn" onClick={chooseOrder}>
-        asc
+        Ascending
       </button>
       <button className="sortBtn" onClick={chooseOrder}>
-        desc
+        Descending
       </button>
     </nav>
   );
