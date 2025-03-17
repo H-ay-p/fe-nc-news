@@ -55,7 +55,11 @@ export default function Article() {
         <p>Date: {article.created_at.slice(0, 10)}</p>
         <p>{article.body}</p>
         <section className="votes">
-          <p>{article.votes + votes} ❤️</p>
+          {article.votes + votes > -1 ? (
+            <p>{article.votes + votes} ❤️</p>
+          ) : (
+            <p>{article.votes + votes} 🖤</p>
+          )}
           <button className="voteBtn" onClick={handlePlusVote}>
             Like
           </button>
