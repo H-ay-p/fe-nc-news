@@ -112,7 +112,11 @@ export default function Comments() {
                 <p>{comment.author}</p>
                 <p>{comment.body}</p>
                 <p>{dateToShow}</p>
-                <p>{comment.votes} ❤️</p>
+                {comment.votes > -1 ? (
+                  <p>{comment.votes} ❤️</p>
+                ) : (
+                  <p>{comment.votes} 🖤</p>
+                )}
                 <DeleteButton
                   comment={comment}
                   comments={comments}
@@ -126,7 +130,12 @@ export default function Comments() {
                 <p>{comment.author}</p>
                 <p>{comment.body}</p>
                 <p>{dateToShow}</p>
-                <p>{comment.votes} ❤️</p>
+
+                {comment.votes > -1 ? (
+                  <p>{comment.votes} ❤️</p>
+                ) : (
+                  <p>{comment.votes} 🖤</p>
+                )}
               </li>
             );
           }

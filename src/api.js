@@ -8,7 +8,7 @@ const news = axios.create({
 export const getArticles = (sortQuery, orderQuery, topicQuery) => {
   let query = `articles?sort_by=${sortQuery}&order=${orderQuery}`;
 
-  if (topicQuery) {
+  if (topicQuery && topicQuery !== "all") {
     query += `&topic=${topicQuery}`;
   }
   console.log(query);
