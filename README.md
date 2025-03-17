@@ -1,4 +1,4 @@
-# NC News Front End Repo
+# NC News Front End
 
 Link to project on Netlify: https://haypncnews.netlify.app
 
