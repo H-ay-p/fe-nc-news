@@ -94,7 +94,9 @@ export default function Comments() {
           }}
           value={commentBodyInput}
         ></textarea>
-        <button type="submit">Post new comment</button>
+        <button type="submit" className="greyText">
+          Post new comment
+        </button>
       </form>
       <p>{failOrSuccess}</p>
       <ul>
@@ -118,6 +120,7 @@ export default function Comments() {
                   <p>{comment.votes} 🖤</p>
                 )}
                 <DeleteButton
+                  className="greyText"
                   comment={comment}
                   comments={comments}
                   setComments={setComments}
