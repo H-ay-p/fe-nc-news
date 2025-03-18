@@ -45,7 +45,7 @@ export default function QueryNav() {
     <nav>
       <label htmlFor="topicSelect"></label>
       <select id="topicSelect" value={chosenTopic} onChange={chooseTopic}>
-        <option value="all" key="all">
+        <option value="all" key="all" className="greyText">
           Show all
         </option>
         {topics.map((topic) => {
@@ -56,9 +56,11 @@ export default function QueryNav() {
           );
         })}
       </select>
-      <label htmlFor="sortSelect">Sort articles by:</label>
+      <label htmlFor="sortSelect" className="greyText">
+        Sort articles by:
+      </label>
       <select id="sortSelect" value={chosenSort} onChange={chooseSort}>
-        <option value="created_at" key="date">
+        <option value="created_at" key="date" className="greyText">
           Date (default)
         </option>
         <option value="comment_count" key="comment_count">
