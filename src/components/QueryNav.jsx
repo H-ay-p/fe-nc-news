@@ -42,10 +42,15 @@ export default function QueryNav() {
   }, []);
 
   return (
-    <nav>
+    <nav className="nav">
       <label htmlFor="topicSelect"></label>
-      <select id="topicSelect" value={chosenTopic} onChange={chooseTopic}>
-        <option value="all" key="all" className="greyText">
+      <select
+        id="topicSelect"
+        value={chosenTopic}
+        onChange={chooseTopic}
+        className="greyText"
+      >
+        <option value="all" key="all">
           Show all
         </option>
         {topics.map((topic) => {
@@ -57,10 +62,15 @@ export default function QueryNav() {
         })}
       </select>
       <label htmlFor="sortSelect" className="greyText">
-        Sort articles by:
+        Sort by:
       </label>
-      <select id="sortSelect" value={chosenSort} onChange={chooseSort}>
-        <option value="created_at" key="date" className="greyText">
+      <select
+        id="sortSelect"
+        value={chosenSort}
+        onChange={chooseSort}
+        className="greyText"
+      >
+        <option value="created_at" key="date">
           Date (default)
         </option>
         <option value="comment_count" key="comment_count">
@@ -74,7 +84,7 @@ export default function QueryNav() {
       <button className="sortBtn" onClick={chooseOrder}>
         Ascending
       </button>
-      <button className="sortBtn" onClick={chooseOrder}>
+      <button className="desc" onClick={chooseOrder}>
         Descending
       </button>
     </nav>
