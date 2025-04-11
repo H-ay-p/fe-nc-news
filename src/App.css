@@ -150,3 +150,13 @@ h4 {
 .greyText {
   color: rgb(56, 56, 56);
 }
+
+.nav {
+  margin: 0;
+}
+
+.desc {
+  margin-right: 0;
+  background-color: rgb(253, 230, 230);
+  color: rgb(56, 56, 56);
+}
